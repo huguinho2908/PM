@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SoundPass - Beatzone</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      
+       /* Custom sections */
+    .custom-section {
+      background-color: rgba(255, 255, 255, 0.07);
+      border-radius: 1.2rem;
+      padding: 2.2rem 2.5rem;
+      box-shadow: 0 0 25px rgba(116, 169, 255, 0.15);
+      margin-top: 2.5rem;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: default;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .custom-section:hover {
+      box-shadow: 0 20px 40px rgba(116, 169, 255, 0.35);
+      transform: translateY(-10px);
+    }
+
+     .navbar-brand img {
+      height: 50px;
+      margin-right: 12px;
+      filter: drop-shadow(0 0 6px #66ccff);
+      transition: transform 0.4s ease;
+    }
+    .navbar-brand img:hover {
+      transform: scale(1.1) rotate(-5deg);
+      filter: drop-shadow(0 0 12px #99d1ff);
+    }
+    .custom-section:nth-of-type(odd) {
+      animation-delay: 0.8s;
+    }
+    .custom-section:nth-of-type(even) {
+      animation-delay: 1s;
+    }
+
+    .custom-section h3 {
+      margin-bottom: 1rem;
+      color: #a6c8ff;
+    }
+    font-family: 'Urbanist', sans-serif;
+      background: linear-gradient(135deg, #001f3f, #0074D9);
+      color: #ffffff;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .navbar {
+      background-color: #003366 !important;
+      box-shadow: 0 4px 10px rgba(0, 51, 102, 0.8);
+      position: relative;
+      z-index: 10;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #ffffff !important;
+    }
+    .navbar-brand img {
+      height: 50px;
+      margin-right: 12px;
+    }
+    .nav-link {
+      color: #d0e8ff !important;
+      font-weight: 600;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #66ccff !important;
+    }
+    main.container {
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+      position: relative;
+      z-index: 10;
+      animation: fadeIn 1.5s ease forwards;
+      opacity: 0;
+    }
+    h1, h2, h3 {
+      text-shadow: 0 0 8px rgba(102, 204, 255, 0.9);
+    }
+    .highlight {
+      color: #66ccff;
+    }
+    .custom-section {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 0 15px rgba(102, 204, 255, 0.15);
+      margin-bottom: 2rem;
+    }
+    .cta-button {
+      background-color: #66ccff;
+      color: #003366;
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      border-radius: 30px;
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .cta-button:hover {
+      background-color: #ffffff;
+      color: #001f3f;
+      text-decoration: none;
+    }
+    footer {
+      background-color: #003366;
+      color: #b0d4ff;
+      position: relative;
+      z-index: 10;
+    }
+    /* Novas colunas com ícones para destaque */
+    .feature-icons {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .feature-icon {
+      text-align: center;
+      max-width: 180px;
+    }
+    .feature-icon svg {
+      width: 60px;
+      height: 60px;
+      fill: #66ccff;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .feature-icon:hover svg {
+      transform: scale(1.2);
+      fill: #ffffff;
+    }
+    .feature-icon h4 {
+      margin-top: 0.5rem;
+      color: #cce6ff;
+      font-weight: 700;
+    }
+
+    /* Partículas animadas */
+    #particles-css {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+      background: transparent;
+    }
+    .particle {
+      position: fixed; /* Mudei para fixed pra garantir visibilidade */
+      border-radius: 50%;
+      background-color: #66ccff;
+      opacity: 0.6;
+      animation-name: pulseMove;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      will-change: transform;
+    }
+
+    @keyframes pulseMove {
+      0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translate(var(--move-x), var(--move-y));
+        opacity: 0.3;
+      }
+    }
+
+    /* FadeIn Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+    }
+  </style>
+</head>
+<body>
+ 
+     <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark px-4">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="Captura_de_ecrã_2025-06-26_015057-removebg-preview (3).png" alt="Logo Beatzone" class="logo me-2" />
+      <span class="highlight"></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="crewconnect.html">CrewConnect</a></li>
+        <li class="nav-item"><a class="nav-link active" href="soundpass.html">SoundPass</a></li>
+        <li class="nav-item"><a class="nav-link" href="sobre.html">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="contactos.html">Contactos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="text-center mb-5">
+      <h1>SoundPass</h1>
+      <p class="lead">O teu bilhete exclusivo para o mundo dos bastidores musicais com o <span class="highlight">SoundPass</span>.</p>
+    </section>
+
+    <section class="feature-icons">
+      <div class="feature-icon">
+        <!-- Icone de bilhete -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M2 7v10h20V7H2zm18 8H4v-6h16v6z"/>
+          <path d="M7 10h2v2H7zM11 10h2v2h-2z"/>
+        </svg>
+        <h4>Bilhetes VIP</h4>
+        <p>Entrada exclusiva para os fãs mais dedicados.</p>
+      </div>
+      <div class="feature-icon">
+        <!-- Icone de nota musical -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+        </svg>
+        <h4>Experiências Sonoras</h4>
+        <p>Acesso a ensaios e som ao vivo dos teus artistas favoritos.</p>
+      </div>
+      <div class="feature-icon">
+        <!-- Icone de cadeado -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 17a2 2 0 0 0 2-2v-3a2 2 0 0 0-4 0v3a2 2 0 0 0 2 2z"/>
+          <path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2zM8 8V6a4 4 0 0 1 8 0v2H8z"/>
+        </svg>
+        <h4>Conteúdos Exclusivos</h4>
+        <p>Vídeos, entrevistas e material só para membros SoundPass.</p>
+      </div>
+    </section>
+
+    <section class="custom-section">
+      <h2>O que é o SoundPass?</h2>
+      <p>Uma plataforma que oferece aos fãs acesso privilegiado a concertos, ensaios e conteúdos exclusivos para viverem o backstage como nunca antes.</p>
+    </section>
+
+    <section class="custom-section">
+      <h3>Benefícios</h3>
+      <ul>
+        <li>Acesso antecipado a bilhetes para os melhores eventos.</li>
+        <li>Participação em sorteios exclusivos.</li>
+        <li>Descontos em merchandising oficial.</li>
+      </ul>
+    </section>
+
+    <section class="custom-section text-center">
+      <h3>Junta-te ao SoundPass</h3>
+      <p>Vive uma experiência única e fica mais perto dos teus ídolos.</p>
+      <a href="contactos.html" class="cta-button">Inscreve-te Já</a>
+    </section>
+  </main>
+
+  <footer class="text-center py-4">
+    <small>&copy; 2025 Beatzone. Todos os direitos reservados.</small>
+  </footer>
+
+  <!-- Partículas animadas -->
+  <div id="particles-css"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const particlesContainer = document.getElementById('particles-css');
+    const numberOfParticles = 50;
+
+    for(let i = 0; i < numberOfParticles; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      const size = Math.random() * 6 + 3; // partículas entre 3px e 9px
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.top = `${Math.random() * 100}vh`;
+      particle.style.left = `${Math.random() * 100}vw`;
+
+      // Movimento aleatório para animação pulseMove
+      const moveX = (Math.random() * 20 - 10).toFixed(2) + 'px';
+      const moveY = (Math.random() * 20 - 10).toFixed(2) + 'px';
+      particle.style.setProperty('--move-x', moveX);
+      particle.style.setProperty('--move-y', moveY);
+
+      // Duracao e atraso aleatorios para animação
+      particle.style.animationDuration = `${(Math.random() * 3 + 2).toFixed(2)}s`;
+      particle.style.animationDelay = `${(Math.random() * 5).toFixed(2)}s`;
+
+      particlesContainer.appendChild(particle);
+    }
+  </script>
+</body>
+</html>
